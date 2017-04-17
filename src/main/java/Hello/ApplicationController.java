@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class GreetingController {
+public class ApplicationController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
@@ -14,6 +14,14 @@ public class GreetingController {
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
         return new Greeting(counter.incrementAndGet(),
-                            String.format(template, name));
+                            String.format(template, name),
+                            "This is sample response.");
+    }
+    
+    @RequestMapping("/login")
+    public Login login(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
+        Login login = new Login();
+        login.testLogin(username, password);
+        return login;
     }
 }
