@@ -5,13 +5,17 @@ public class Login {
     private User userDetails = null;
 
     public Login(){};
-    public void testLogin(String username, String password){
-        if(validUserName(username) 
-                && validPassword(password)){
-            setLoginResult("Welcome, " +username);
-            prepareUserDetails(username);
+    public void testLogin(String username, String password, boolean validate){
+        if(validate){
+            if(validUserName(username)
+                    && validPassword(password)){
+                setLoginResult("Welcome, " +username);
+                prepareUserDetails(username);
+            }else{
+                setLoginResult("Username or password is incorrect!");
+            }
         }else{
-            setLoginResult("Username or password is incorrect!");
+            prepareUserDetails(username);
         }
         
     }

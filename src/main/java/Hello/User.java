@@ -49,9 +49,11 @@ public class User {
 
     public void populateUserData(String username) {
         if (username.equalsIgnoreCase("ayush")) {
-            populateUserData("Ayush", "Verma", 30, "Male", true);
+            populateUserData(username, "Verma", 30, "Male", true);
         } else if (username.equalsIgnoreCase("megha")) {
-            populateUserData("Megha", "Verma", 27, "Female", true);
+            populateUserData(username, "Verma", 27, "Female", true);
+        } else {
+            populateUserData(username, "not known", -1, "M/F/X", false);
         }
     }
 
