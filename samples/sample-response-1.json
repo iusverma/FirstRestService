@@ -1,0 +1,10 @@
+{
+  "loginResult": "",
+  "userDetails": {
+    "firstName": "ayush",
+    "lastName": "Verma",
+    "age": 30,
+    "sex": "Male",
+    "married": true
+  }
+}
