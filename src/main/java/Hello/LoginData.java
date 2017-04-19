@@ -26,5 +26,4 @@ public class LoginData {
     public void setPassword(String password) {
         this.password = password;
     }
-    
 }
