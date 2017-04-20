@@ -22,13 +22,18 @@ public class ApplicationController {
     
     @RequestMapping("/login")
     public Login login(@RequestParam(value="username") String username,
-            @RequestParam(value="password") String password,
-            @RequestBody LoginData input) {
+            @RequestParam(value="password") String password) {
+        Login login = new Login();
+        login.testLogin(username,password);
+
+        return login;
+    }
+
+    @RequestMapping("/v1/login")
+    public Login loginWithRequest(@RequestBody LoginData input) {
         Login login = new Login();
         if(input!=null){
-            login.testLogin(input.getUsername(), input.getPassword(),false);
-        }else{
-            login.testLogin(username, password,true);
+            login.testLoginWithRequest(input);
         }
 
         return login;

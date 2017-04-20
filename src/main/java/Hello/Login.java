@@ -1,44 +1,39 @@
 package Hello;
 
+import Utils.UserValidationUtil;
+
 public class Login {
     private String loginResult = "";
     private User userDetails = null;
 
     public Login(){};
-    public void testLogin(String username, String password, boolean validate){
-        if(validate){
-            if(validUserName(username)
-                    && validPassword(password)){
-                setLoginResult("Welcome, " +username);
-                prepareUserDetails(username);
-            }else{
-                setLoginResult("Username or password is incorrect!");
-            }
-        }else{
+
+    public void testLogin(String username, String password){
+        LoginData loginData = new LoginData(username,password);
+        if(UserValidationUtil.validate(loginData)){
+            setLoginResult("Welcome, " +username);
             prepareUserDetails(username);
+        }else{
+            setLoginResult("Username or password is incorrect!");
         }
-        
     }
-    private boolean validUserName(String username){
-       if (username.equalsIgnoreCase("ayush") || username.equalsIgnoreCase("megha")){
-           return true;
-       }        
-       return false;
-    }
-    
-    private boolean validPassword(String password){
-        if(password.equalsIgnoreCase("passw0rd")
-                || password.equalsIgnoreCase("pa$$word")
-                || password.equalsIgnoreCase("p@ssword")){
-            return true;
+
+    public void testLoginWithRequest(LoginData loginData){
+        String username = loginData.getUsername();
+        if(UserValidationUtil.validate(loginData)){
+            setLoginResult("Welcome, " +username);
+        }else{
+            setLoginResult("Username or password is incorrect!");
         }
-        return false;
+        prepareUserDetails(username);
     }
-    
+
     private void prepareUserDetails(String username){
         userDetails = new User();
-        userDetails.populateUserData(username);
+        userDetails.setFirstName(username);
+        UserValidationUtil.populateUserData(userDetails);
     }
+
     public String getLoginResult() {
         return loginResult;
     }
